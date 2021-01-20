@@ -14,40 +14,39 @@
                     Anthony D'Souza's
                     <small>DevJourney</small>
                 </h1>
-
+                
                 <!-- First Blog Post -->
-                
-                <?php 
-                $query = "SELECT * FROM posts";
-                $posts = mysqli_query($connection, $query);
-                while($row = mysqli_fetch_assoc($posts)){
-                    $post_title = $row['post_title'];
-                    $post_author = $row['post_author'];
-                    $post_date = $row['post_date'];
-                    $date_month = date('F',strtotime($post_date));
-                    $date_day = date('d',strtotime($post_date));
-                    $date_year = date('Y',strtotime($post_date));
-                    $date_time = date('h:i A',strtotime($post_date));
-                    $post_image = $row['post_image'];
-                    $post_content = $row['post_content'];
+                <?php
+                    $query = "SELECT * FROM posts";
+                    $posts = mysqli_query($connection, $query);
+                    while($row = mysqli_fetch_assoc($posts)){
+                            $post_title = $row['post_title'];
+                            $post_author = $row['post_author'];
+                            $post_date = $row['post_date'];
+                            $date_month = date('F',strtotime($post_date));
+                            $date_day = date('d',strtotime($post_date));
+                            $date_year = date('Y',strtotime($post_date));
+                            $date_time = date('h:i A',strtotime($post_date));
+                            $post_image = $row['post_image'];
+                            $post_content = $row['post_content'];      
+                ?>             
+                            <h2>
+                            <a href="#"><?php echo $post_title ?></a>
+                            </h2>
+                            <p class="lead">
+                                by <a href="index.php"><?php echo $post_author ?></a>
+                            </p>
+                            <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo "{$date_month} {$date_day}, {$date_year} at {$date_time}" ?></p>
+                            <hr>
+                            <img class="img-responsive" src='images/<?php echo $post_image ?>' alt="" width="900" height="300">
+                            <hr>
+                            <p><?php echo $post_content ?></p>
+                            <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+
+                            <hr>
+                <?php   
+                    }
                 ?>
-                
-                <h2>
-                    <a href="#"><?php echo "{$post_title}"?></a>
-                </h2>
-                <p class="lead">
-                    by <a href="index.php"><?php echo "{$post_author}"?></a>
-                </p>
-                <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo "{$date_month} {$date_day}, {$date_year} at {$date_time}" ?></p>
-                <hr>
-                <img class="img-responsive" src='images/<?php echo "{$post_image}" ?>' alt="" width="900" height="300">
-                <hr>
-                <p><?php echo "{$post_content}"?></p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
-
-                <hr>
-
-                <?php } ?>
             </div>
 
             <!-- Blog Sidebar Widgets Column -->
