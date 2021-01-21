@@ -90,25 +90,41 @@
             $post_id = $row['post_id'];
             $post_title = $row['post_title'];
             $post_author = $row['post_author'];
+            $post_cat_id = $row['post_cat_id'];
             $post_date = $row['post_date'];
             $post_image = $row['post_image'];
             $post_content = $row['post_content'];
             $post_tags = $row['post_tags'];
-?>
-            <tr>
+            $post_comments = $row['post_com_count'];
+            $post_status = $row['post_status'];
+?>      
+               <tr>
                 <td><?php echo $post_id; ?></td>
-                <td><?php echo $post_title; ?></td>
                 <td><?php echo $post_author; ?></td>
-                <td><?php echo $post_date; ?></td>
-                <td><?php echo $post_image; ?></td>        
-                <td><?php echo $post_content; ?></td>
+                <td><?php echo $post_title; ?></td>
+                <td><?php echo $post_cat_id; ?></td>
+                <td><?php echo $post_status; ?></td>
+                <td><?php echo "<img class='img-responsive' src='../images/{$post_image}'>";?></td>        
                 <td><?php echo $post_tags; ?></td>
-<!--
+                <td><?php echo $post_comments; ?></td>
+                <td><?php echo $post_date; ?></td>
+                <td><?php echo $post_content; ?></td>
+
                 <td><a href="posts.php?delete=<?php echo "{$post_id}"; ?>">Delete</a></td>
-                <td><a href="posts.php?edit=<?php echo "{$post_id}"; ?>">Edit</a></td>
+<!--                <td><a href="posts.php?edit=<?php echo "{$post_id}"; ?>">Edit</a></td>
 -->
             </tr>
 
  <?php }   
+    }
+
+function deletePost() {
+        global $connection;
+        if(isset($_GET['delete'])) {
+            $get_post_id = $_GET['delete'];
+            $query = "DELETE FROM posts WHERE post_id = {$get_post_id}";
+            $delete_post = mysqli_query($connection, $query);
+            header("Location: posts.php");
+        }  
     }
 ?>
