@@ -1,4 +1,11 @@
 <?php
+
+    function confirmQuery($result) {
+        global $connection;
+        if(!$result) {
+            die("Query Failed " . mysqli_error($connection));
+        }   
+    }
     function insertCategory() {
         global $connection;
         if(isset($_POST['submit'])){
@@ -111,8 +118,8 @@
                 <td><?php echo $post_content; ?></td>
 
                 <td><a href="posts.php?delete=<?php echo "{$post_id}"; ?>">Delete</a></td>
-<!--                <td><a href="posts.php?edit=<?php echo "{$post_id}"; ?>">Edit</a></td>
--->
+                <td><a href="posts.php?source=edit_post&edit=<?php echo "{$post_id}"; ?>">Edit</a></td>
+
             </tr>
 
  <?php }   
@@ -127,4 +134,7 @@ function deletePost() {
             header("Location: posts.php");
         }  
     }
+
+
+
 ?>

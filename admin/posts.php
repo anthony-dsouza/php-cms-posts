@@ -27,8 +27,8 @@ switch($source) {
     include 'includes/add_post.php';
     break;
 
-    case '24';
-    echo "24 working";
+    case 'edit_post';
+    include 'includes/edit_post.php';
     break;
 
     default:
