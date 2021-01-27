@@ -85,7 +85,7 @@
         $post_author= $_POST['post_author'];
         $post_date= $_POST['post_date'];
         $post_status = $_POST['post_status'];
-        if(!$post_image_temp = $_FILES['post_image']['tmp_name']) {
+        if(!$_FILES['post_image']['tmp_name']) {
             $post_image = $get_post_image;
         } else {
             $post_image = $_FILES['post_image']['name'];

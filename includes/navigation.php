@@ -8,19 +8,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <a class="navbar-brand" href="index.php">Home</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                   <?php 
-                    $query = "SELECT * FROM categories";
-                    $all_categories = mysqli_query($connection, $query);
-                    while($row = mysqli_fetch_assoc($all_categories)){
-                        $cat_title = $row['cat_title'];
-                        echo "<li><a href='#'>{$cat_title}</a></li>";
-                    }
-                    ?>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Categories <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                               <?php 
+                                $query = "SELECT * FROM categories";
+                                $all_categories = mysqli_query($connection, $query);
+                                while($row = mysqli_fetch_assoc($all_categories)){
+                                    $cat_id = $row['cat_id'];
+                                    $cat_title = $row['cat_title'];
+                                    echo "<li><a href='category.php?c_id={$cat_id}'>{$cat_title}</a></li>";
+                                }
+                                ?>  
+                            </ul>
+                        </li>
                      <li>
                         <a href="admin/index.php">Admin</a>
                     </li>
@@ -34,8 +40,26 @@
                         <a href="#">Contact</a>
                     </li>
                 </ul>
+                <ul class="navbar-form">
+                    <li>
+                                                    <!-- Blog Search Well -->
+                            <!-- Search Form -->
+                            <form action="search.php" method="post">
+                                <div class="input-group">
+                                    <input name="search" type="text" class="form-control">
+                                    <span class="input-group-btn">
+                                        <button name="submit" class="btn btn-default" type="submit">
+                                            <span class="glyphicon glyphicon-search"></span>
+                                    </button>
+                                    </span>
+                                </div>
+<!--                                 /.input-group -->
+                            </form>
+                    </li>
+                </ul>
             </div>
             <!-- /.navbar-collapse -->
+            
         </div>
         <!-- /.container -->
     </nav>

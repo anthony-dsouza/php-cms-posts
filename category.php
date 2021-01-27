@@ -8,7 +8,7 @@
         <div class="row">
 
             <!-- Blog Entries Column -->
-            <div class="col-md-12 text-center">
+            <div class="col-md-8">
                
                 <h1 class="page-header">
                     Anthony D'Souza's
@@ -17,8 +17,14 @@
                 
                 <!-- First Blog Post -->
                 <?php
-                    $query = "SELECT * FROM posts";
-                    $posts = mysqli_query($connection, $query);
+                    if(isset($_GET['c_id'])) {
+                        $get_cat_id = $_GET['c_id'];
+                        $query = "SELECT * FROM posts WHERE post_cat_id = {$get_cat_id}";
+                        $posts = mysqli_query($connection, $query);
+                        if(!$posts) {
+                            die("query failed" . mysqli_error($connection));
+                        }
+                    }
                     while($row = mysqli_fetch_assoc($posts)){
                             $post_id = $row['post_id'];
                             $post_title = $row['post_title'];
@@ -39,7 +45,7 @@
                             </p>
                             <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo "{$date_month} {$date_day}, {$date_year} at {$date_time}" ?></p>
                             <hr>
-                            <img class="img-responsive img-thumbnail" src='images/<?php echo $post_image ?>' alt="" width="900" height="300">
+                            <img class="img-responsive" src='images/<?php echo $post_image ?>' alt="" width="900" height="300">
                             <hr>
                             <p><?php echo $post_content ?></p>
                             <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -50,11 +56,9 @@
                 ?>
             </div>
 
-
-<!--             Blog Sidebar Widgets Column -->
+            <!-- Blog Sidebar Widgets Column -->
             
-<!--            <?php include "includes/sidebar.php"; ?>
--->
+            <?php include "includes/sidebar.php"; ?>
 
         </div>
         <!-- /.row -->

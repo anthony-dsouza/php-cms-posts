@@ -98,6 +98,12 @@
             $post_title = $row['post_title'];
             $post_author = $row['post_author'];
             $post_cat_id = $row['post_cat_id'];
+            ///// display cat_title instead of cat_id
+                $query1 = "SELECT cat_title FROM categories WHERE cat_id = {$post_cat_id}";
+                $cat_title_query = mysqli_query($connection, $query1);
+                confirmQuery($cat_title_query);
+                $row1 = mysqli_fetch_assoc($cat_title_query);
+            $cat_title = $row1['cat_title'];
             $post_date = $row['post_date'];
             $post_image = $row['post_image'];
             $post_content = $row['post_content'];
@@ -109,13 +115,13 @@
                 <td><?php echo $post_id; ?></td>
                 <td><?php echo $post_author; ?></td>
                 <td><?php echo $post_title; ?></td>
-                <td><?php echo $post_cat_id; ?></td>
+                <td><?php echo $cat_title; ?></td>
                 <td><?php echo $post_status; ?></td>
-                <td><?php echo "<img class='img-responsive' src='../images/{$post_image}'>";?></td>        
+                <td><?php echo "<img class='img-responsive' width='90' src='../images/{$post_image}'>";?></td>        
                 <td><?php echo $post_tags; ?></td>
                 <td><?php echo $post_comments; ?></td>
                 <td><?php echo $post_date; ?></td>
-                <td><?php echo $post_content; ?></td>
+<!--                <td><?php echo $post_content; ?></td>-->
 
                 <td><a href="posts.php?delete=<?php echo "{$post_id}"; ?>">Delete</a></td>
                 <td><a href="posts.php?source=edit_post&edit=<?php echo "{$post_id}"; ?>">Edit</a></td>
