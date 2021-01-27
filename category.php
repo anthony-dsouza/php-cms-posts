@@ -35,7 +35,7 @@
                             $date_year = date('Y',strtotime($post_date));
                             $date_time = date('h:i A',strtotime($post_date));
                             $post_image = $row['post_image'];
-                            $post_content = $row['post_content'];      
+                            $post_content = substr($row['post_content'],0,100);      
                 ?>             
                             <h2>
                             <a href="post.php?p_id=<?php echo $post_id ?>"><?php echo $post_title ?></a>
