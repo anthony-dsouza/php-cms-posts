@@ -131,16 +131,60 @@
  <?php }   
     }
 
-function deletePost() {
+    function deletePost() {
+            global $connection;
+            if(isset($_GET['delete'])) {
+                $get_post_id = $_GET['delete'];
+                $query = "DELETE FROM posts WHERE post_id = {$get_post_id}";
+                $delete_post = mysqli_query($connection, $query);
+                header("Location: posts.php");
+            }  
+        }
+
+    function getAllComments() {
         global $connection;
-        if(isset($_GET['delete'])) {
-            $get_post_id = $_GET['delete'];
-            $query = "DELETE FROM posts WHERE post_id = {$get_post_id}";
-            $delete_post = mysqli_query($connection, $query);
-            header("Location: posts.php");
-        }  
+        $query = "SELECT * FROM comments";
+        $all_comments = mysqli_query($connection, $query);
+        while($row = mysqli_fetch_assoc($all_comments)){
+            $comment_id = $row['comment_id'];
+            $comment_email = $row['comment_email'];
+            $comment_author = $row['comment_author'];
+            $comment_post_id = $row['comment_post_id'];
+            ///// display post_title instead of comment_post_id
+                $query1 = "SELECT post_title FROM posts WHERE post_id = {$comment_post_id}";
+                $post_title_query = mysqli_query($connection, $query1);
+                confirmQuery($post_title_query);
+                $row1 = mysqli_fetch_assoc($post_title_query);
+            $post_title = $row1['post_title'];
+            $comment_date = $row['comment_date'];
+            $comment_content = $row['comment_content'];
+            $comment_status = $row['comment_status'];
+?>      
+               <tr>
+                <td><?php echo $comment_id; ?></td>
+                <td><?php echo $post_title; ?></td>
+                <td><?php echo $comment_author; ?></td>
+                <td><?php echo $comment_email; ?></td>
+                <td><?php echo $comment_status; ?></td>       
+                <td><?php echo $comment_date; ?></td>
+<!--                <td><?php echo $comment_content; ?></td>-->
+
+                <td><a href="comments.php?delete=<?php echo "{$comment_id}"; ?>">Delete</a></td>
+                <td><a href="comments.php?source=edit_comment&edit=<?php echo "{$comment_id}"; ?>">Edit</a></td>
+
+            </tr>
+
+<?php }   
     }
 
-
+    function deleteComment() {
+        global $connection;
+        if(isset($_GET['delete'])) {
+            $get_comment_id = $_GET['delete'];
+            $query = "DELETE FROM comments WHERE comment_id = {$get_comment_id}";
+            $delete_comment = mysqli_query($connection, $query);
+            header("Location: comments.php");
+        }  
+    }
 
 ?>
