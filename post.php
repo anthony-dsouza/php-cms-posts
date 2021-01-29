@@ -38,7 +38,7 @@
                             $post_content = $row['post_content'];      
                 ?>             
                             <h2>
-                            <a href="#"><?php echo $post_title ?></a>
+                            <a href=""><?php echo $post_title ?></a>
                             </h2>
                             <p class="lead">
                                 by <a href="index.php"><?php echo $post_author ?></a>
@@ -55,13 +55,30 @@
                                 <!-- Blog Comments -->
 
                                 <!-- Comments Form -->
+                <?php
+    if(isset($_POST['submit'])){
+            $comment_email = "";
+            $comment_author = "";
+            $comment_post_id = $get_post_id;
+            $comment_content = $_POST['content'];
+            $comment_status = "approved";
+        
+        $query = "INSERT INTO comments(comment_post_id, comment_author, comment_email, comment_date, comment_content, comment_status) ";
+        $query .= "VALUES({$comment_post_id}, '{$comment_author}', '{$comment_email}', now(), '{$comment_content}', '{$comment_status}'  ) ";
+        $insert_comment = mysqli_query($connection, $query);
+        if(!$insert_comment) {
+            die("query failed" . mysqli_error($connection));
+        }
+        
+    }
+?>
                 <div class="well">
                     <h4>Leave a Comment:</h4>
-                    <form role="form">
+                    <form action="" method="post">
                         <div class="form-group">
-                            <textarea class="form-control" rows="3"></textarea>
+                            <textarea class="form-control" rows="3" name="content"></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                     </form>
                 </div>
 
