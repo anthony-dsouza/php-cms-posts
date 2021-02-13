@@ -167,8 +167,9 @@
                 <td><?php echo $comment_email; ?></td>
                 <td><?php echo $comment_status; ?></td>       
                 <td><?php echo $comment_date; ?></td>
-<!--                <td><?php echo $comment_content; ?></td>-->
-
+                <td><?php echo $comment_content; ?></td>
+                <td><a href="comments.php" >Approve</a></td>
+                <td><a href="comments.php">Unapprove</a></td>
                 <td><a href="comments.php?delete=<?php echo "{$comment_id}"; ?>">Delete</a></td>
                 <td><a href="comments.php?source=edit_comment&edit=<?php echo "{$comment_id}"; ?>">Edit</a></td>
 

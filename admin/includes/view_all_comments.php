@@ -3,12 +3,14 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Title</th>
+                                        <th>Post</th>
                                         <th>Author</th>
                                         <th>Email</th>
                                         <th>Status</th>
                                         <th>Date</th>
-<!--                                        <th>Content</th>-->
+                                        <th>Comment</th>
+                                        <th>Approve</th>
+                                        <th>Unapprove</th>
                                     </tr>
                                 </thead>
                                 <tbody>
