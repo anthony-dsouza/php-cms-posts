@@ -58,8 +58,8 @@
                                 <!-- Comments Form -->
                 <?php
     if(isset($_POST['submit'])){
-            $comment_email = "";
-            $comment_author = "";
+            $comment_email = $_POST['comment_email'];
+            $comment_author = $_POST['comment_author'];
             $comment_post_id = $get_post_id;
             $comment_content = $_POST['content'];
             $comment_status = "approved";
@@ -77,7 +77,13 @@
                     <h4>Leave a Comment:</h4>
                     <form action="" method="post">
                         <div class="form-group">
-                            <textarea class="form-control" rows="3" name="content"></textarea>
+                            <input type="text" class="form-control" name="comment_author" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="comment_email" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" rows="3" name="content" placeholder="Comment"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                     </form>

@@ -171,7 +171,6 @@
                 <td><a href="comments.php?approve=<?php echo "{$comment_id}"; ?>" >Approve</a></td>
                 <td><a href="comments.php?unapprove=<?php echo "{$comment_id}"; ?>">Unapprove</a></td>
                 <td><a href="comments.php?delete=<?php echo "{$comment_id}"; ?>">Delete</a></td>
-                <td><a href="comments.php?source=edit_comment&edit=<?php echo "{$comment_id}"; ?>">Edit</a></td>
 
             </tr>
 
