@@ -11,13 +11,17 @@
                                         <th>Comment</th>
                                         <th>Approve</th>
                                         <th>Unapprove</th>
+                                        <th>Delete</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 <?php 
     ///// posts table data 
-    getAllComments();      
+    getAllComments();
+    approveComment();
+    unapproveComment();
     deleteComment();
+
 ?>                                               
                                 </tbody>
                             </table>

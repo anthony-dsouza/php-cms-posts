@@ -88,7 +88,7 @@
                 <!-- Posted Comments -->
 
                 <?php
-            $query = "SELECT * FROM comments WHERE comment_post_id = {$get_post_id}";
+            $query = "SELECT * FROM comments WHERE comment_post_id = {$get_post_id} AND comment_status='approved'";
             $post_comments = mysqli_query($connection, $query);
                 // add function
 //            confirmQuery($post_comments);

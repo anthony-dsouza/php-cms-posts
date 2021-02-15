@@ -168,8 +168,8 @@
                 <td><?php echo $comment_status; ?></td>       
                 <td><?php echo $comment_date; ?></td>
                 <td><?php echo $comment_content; ?></td>
-                <td><a href="comments.php" >Approve</a></td>
-                <td><a href="comments.php">Unapprove</a></td>
+                <td><a href="comments.php?approve=<?php echo "{$comment_id}"; ?>" >Approve</a></td>
+                <td><a href="comments.php?unapprove=<?php echo "{$comment_id}"; ?>">Unapprove</a></td>
                 <td><a href="comments.php?delete=<?php echo "{$comment_id}"; ?>">Delete</a></td>
                 <td><a href="comments.php?source=edit_comment&edit=<?php echo "{$comment_id}"; ?>">Edit</a></td>
 
@@ -188,4 +188,23 @@
         }  
     }
 
+    function approveComment() {
+        global $connection;
+        if(isset($_GET['approve'])) {
+            $get_comment_id = $_GET['approve'];
+            $query = "UPDATE comments SET comment_status='approved' WHERE comment_id = {$get_comment_id}";
+            $approve_comment = mysqli_query($connection, $query);
+            header("Location: comments.php");
+        }  
+    }
+
+    function unapproveComment() {
+        global $connection;
+        if(isset($_GET['unapprove'])) {
+            $get_comment_id = $_GET['unapprove'];
+            $query = "UPDATE comments SET comment_status='unapproved' WHERE comment_id = {$get_comment_id}";
+            $unapprove_comment = mysqli_query($connection, $query);
+            header("Location: comments.php");
+        }  
+    }
 ?>
