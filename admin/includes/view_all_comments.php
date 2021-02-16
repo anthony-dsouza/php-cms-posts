@@ -3,7 +3,7 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Post</th>
+                                        <th>In response to</th>
                                         <th>Author</th>
                                         <th>Email</th>
                                         <th>Status</th>
