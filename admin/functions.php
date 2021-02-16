@@ -91,6 +91,12 @@
 
     function getAllPosts() {
         global $connection;
+        ///// updates post_com_count column
+        $query = "UPDATE posts SET post_com_count = (SELECT COUNT(*) FROM comments WHERE comment_post_id = posts.post_id AND comment_status = 'approved')";
+        $update_post_com_count = mysqli_query($connection, $query);
+        confirmQuery($update_post_com_count);
+        
+        
         $query = "SELECT * FROM posts";
         $all_posts = mysqli_query($connection, $query);
         while($row = mysqli_fetch_assoc($all_posts)){
@@ -108,6 +114,7 @@
             $post_image = $row['post_image'];
             $post_content = $row['post_content'];
             $post_tags = $row['post_tags'];
+            
             $post_comments = $row['post_com_count'];
             $post_status = $row['post_status'];
 ?>      

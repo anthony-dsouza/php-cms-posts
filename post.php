@@ -1,4 +1,4 @@
- <?php include "includes/db.php"; ?>
+<?php include "includes/db.php"; ?>
 <?php include "includes/header.php"; ?>
     <!-- Navigation -->
     <?php include "includes/navigation.php"; ?>
@@ -70,7 +70,9 @@
         if(!$insert_comment) {
             die("query failed" . mysqli_error($connection));
         }
-        
+//        $query = "UPDATE posts SET post_com_count = post_com_count + 1 WHERE post_id = {$comment_post_id}";
+//        $update_post_com_count = mysqli_query($connection, $query);
+//        confirmQuery($update_post_com_count);
     }
 ?>
                 <div class="well">
@@ -95,9 +97,9 @@
 
                 <?php
             $query = "SELECT * FROM comments WHERE comment_post_id = {$get_post_id} AND comment_status='approved'";
+            $query .= "ORDER BY comment_id DESC";
             $post_comments = mysqli_query($connection, $query);
-                // add function
-//            confirmQuery($post_comments);
+            confirmQuery($post_comments);
             while($row = mysqli_fetch_assoc($post_comments)){
                 $comment_id = $row['comment_id'];
                 $comment_email = $row['comment_email'];
@@ -106,8 +108,7 @@
                 ///// display post_title instead of comment_post_id
                     $query1 = "SELECT post_title FROM posts WHERE post_id = {$comment_post_id}";
                     $post_title_query = mysqli_query($connection, $query1);
-                //add function
-//                    confirmQuery($post_title_query);
+                    confirmQuery($post_title_query);
                     $row1 = mysqli_fetch_assoc($post_title_query);
                 $post_title = $row1['post_title'];
                 $comment_date = $row['comment_date'];

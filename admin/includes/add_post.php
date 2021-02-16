@@ -11,12 +11,12 @@
         $post_tags = $_POST['post_tags'];
         $post_content = $_POST['post_content'];
         $post_date = date('d-m-y');
-        $post_com_count = 4;
+//        $post_com_count = 4;
         
         move_uploaded_file($post_image_temp, "../images/$post_image");
         
         $query = "INSERT INTO posts(post_cat_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_com_count, post_status) ";
-        $query .= "VALUES({$post_cat_id}, '{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', {$post_com_count}, '{$post_status}'  ) ";
+        $query .= "VALUES({$post_cat_id}, '{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_status}'  ) ";
         $insert_post = mysqli_query($connection, $query);
         confirmQuery($insert_post);
         
