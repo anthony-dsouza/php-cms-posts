@@ -61,7 +61,7 @@
             $comment_email = $_POST['comment_email'];
             $comment_author = $_POST['comment_author'];
             $comment_post_id = $get_post_id;
-            $comment_content = $_POST['content'];
+            $comment_content = $_POST['comment_content'];
             $comment_status = "approved";
         
         $query = "INSERT INTO comments(comment_post_id, comment_author, comment_email, comment_date, comment_content, comment_status) ";
@@ -75,7 +75,7 @@
 ?>
                 <div class="well">
                     <h4>Leave a Comment:</h4>
-                    <form action="" method="post">
+                    <form action="" method="post" role="form">
                         <div class="form-group">
                             <input type="text" class="form-control" name="comment_author" placeholder="Name">
                         </div>
@@ -83,7 +83,7 @@
                             <input type="email" class="form-control" name="comment_email" placeholder="Email">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" rows="3" name="content" placeholder="Comment"></textarea>
+                            <textarea class="form-control" rows="3" name="comment_content" placeholder="Comment"></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary" name="submit">Submit</button>
                     </form>

@@ -18,7 +18,7 @@
                 <!-- First Blog Post -->   
                 <?php
                     $search = $_POST['search'];
-                    $query = "SELECT * FROM posts WHERE post_tags OR post_author LIKE '%$search%' ";
+                    $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%' OR post_author LIKE '%$search%' ";
                     $search_query = mysqli_query($connection, $query);
                     $count = mysqli_num_rows($search_query);
                     if($count == 0) {

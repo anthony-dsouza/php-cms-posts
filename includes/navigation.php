@@ -40,7 +40,7 @@
                         <a href="#">Contact</a>
                     </li>
                 </ul>
-                <ul class="navbar-form">
+                <ul class="navbar-form pull-right">
                     <li>
                                                     <!-- Blog Search Well -->
                             <!-- Search Form -->
