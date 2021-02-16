@@ -92,6 +92,8 @@
     function getAllPosts() {
         global $connection;
         ///// updates post_com_count column
+        //// could get slow loading if database has many rows. 
+        ////you can also implement by increasing and reducing column value when adding and deleting respectfully
         $query = "UPDATE posts SET post_com_count = (SELECT COUNT(*) FROM comments WHERE comment_post_id = posts.post_id AND comment_status = 'approved')";
         $update_post_com_count = mysqli_query($connection, $query);
         confirmQuery($update_post_com_count);
@@ -129,9 +131,9 @@
                 <td><?php echo $post_comments; ?></td>
                 <td><?php echo $post_date; ?></td>
 <!--                <td><?php echo $post_content; ?></td>-->
-
-                <td><a href="posts.php?delete=<?php echo "{$post_id}"; ?>">Delete</a></td>
                 <td><a href="posts.php?source=edit_post&edit=<?php echo "{$post_id}"; ?>">Edit</a></td>
+                <td><a href="posts.php?delete=<?php echo "{$post_id}"; ?>">Delete</a></td>
+                
 
             </tr>
 
@@ -144,6 +146,8 @@
                 $get_post_id = $_GET['delete'];
                 $query = "DELETE FROM posts WHERE post_id = {$get_post_id}";
                 $delete_post = mysqli_query($connection, $query);
+                $query = "DELETE FROM comments WHERE comment_post_id = {$get_post_id}";
+                $delete_comments = mysqli_query($connection, $query);
                 header("Location: posts.php");
             }  
         }

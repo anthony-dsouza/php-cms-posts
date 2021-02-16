@@ -29,7 +29,12 @@
                             $date_year = date('Y',strtotime($post_date));
                             $date_time = date('h:i A',strtotime($post_date));
                             $post_image = $row['post_image'];
-                            $post_content = substr($row['post_content'],0,100);      
+                            $post_content = substr($row['post_content'],0,100); 
+                            $post_status = $row['post_status'];
+                            if($post_status !== 'published') {
+                                
+                                echo "<h1 class='text-center'>No Posts Available</h1>";
+                            } else {
                 ?>             
                             <h2>
                             <a href="post.php?p_id=<?php echo $post_id ?>"><?php echo $post_title ?></a>
@@ -46,7 +51,7 @@
 
                             <hr>
                 <?php   
-                    }
+                    } }
                 ?>
             </div>
 
