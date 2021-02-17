@@ -218,4 +218,47 @@
             header("Location: comments.php");
         }  
     }
+
+    function getAllUsers() {
+        global $connection;
+        $query = "SELECT * FROM users";
+        $all_users = mysqli_query($connection, $query);
+        while($row = mysqli_fetch_assoc($all_users)){
+            $user_id = $row['user_id'];
+            $username = $row['username'];
+            $user_password = $row['user_password'];
+            $user_firstname = $row['user_firstname'];
+            $user_lastname = $row['user_lastname'];
+            $user_email = $row['user_email'];
+            $user_image = $row['user_image'];
+            $user_role = $row['user_role'];
+            $randSalt = $row['randSalt'];
+?>      
+               <tr>
+                <td><?php echo $user_id; ?></td>
+                <td><?php echo $username; ?></td>
+                <td><?php echo $user_password; ?></td>
+                <td><?php echo $user_firstname; ?></td>
+                <td><?php echo $user_lastname; ?></td>
+                <td><?php echo $user_email; ?></td>
+                <td><?php echo "<img class='img-responsive' width='90' src='../images/{$user_image}'>";?></td>        
+                <td><?php echo $user_role; ?></td>
+                <td><a href="users.php?source=edit_user&edit=<?php echo "{$user_id}"; ?>">Edit</a></td>
+                <td><a href="users.php?delete=<?php echo "{$user_id}"; ?>">Delete</a></td>
+                
+
+            </tr>
+
+ <?php }
+    }
+
+    function deleteUser() {
+        global $connection;
+        if(isset($_GET['delete'])) {
+            $get_user_id = $_GET['delete'];
+            $query = "DELETE FROM users WHERE user_id = {$get_user_id}";
+            $delete_user = mysqli_query($connection, $query);
+            header("Location: users.php");
+        }  
+    }
 ?>
