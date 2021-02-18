@@ -36,16 +36,26 @@
         <input type="text" class="form-control" name="user_email" value="<?php echo $get_user_email ?>">
     </div>
     <div class="form-group">
+        <label for="user_role">Role</label>
+        <select class="form-control" name="user_role" id="">
+            <option selected value='<?php echo $get_user_role ?>'><?php echo ucfirst($get_user_role) ?></option>
+            <?php
+            //// if statement to not include selected option
+            if($get_user_role === 'admin') {
+                echo "<option value='subscriber'>Subscriber</option>";    
+            } else {
+                echo "<option value='admin'>Admin</option>";
+            }
+            ?>
+        </select>
+    </div>
+    <div class="form-group">
         <label for="user_image">Image</label>
         <?php
             echo "<img class='img-responsive' src='../images/{$get_user_image}'>";
 ?>
         <input type="file" name="user_image">
     </div>  
-    <div class="form-group">
-        <label for="user_role">Role</label>
-        <input type="text" class="form-control" name="user_role" value="<?php echo $get_user_role ?>">
-    </div>
     <div class="form-group">
         <input type="submit" class="btn btn-primary" name="update_user" value="Update">
     </div> 
