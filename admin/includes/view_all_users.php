@@ -4,6 +4,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Username</th>
+<!--                                        remove password?-->
                                         <th>Password</th>
                                         <th>First Name</th>
                                         <th>Last Name</th>

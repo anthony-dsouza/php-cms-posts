@@ -40,13 +40,17 @@
         <input type="text" class="form-control" name="user_email">
     </div>
     <div class="form-group">
-        <label for="user_image">Image</label>
-        <input type="file" name="user_image">
-    </div>  
-    <div class="form-group">
         <label for="user_role">Role</label>
-        <input type="text" class="form-control" name="user_role">
+        <select class="form-control" name="user_role" id="">
+            <option selected disabled value=''>Select Role</option>    
+            <option value="admin">Admin</option>
+            <option value="subscriber">Subscriber</option>
+        </select>
     </div>
+    <div class="form-group">
+        <label for="user_image">Image</label>
+        <input class="form-control-file" type="file" name="user_image">
+    </div>  
     <div class="form-group">
         <input type="submit" class="btn btn-primary" name="create_user" value="Add User">
     </div> 
