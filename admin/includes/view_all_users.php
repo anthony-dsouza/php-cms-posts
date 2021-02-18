@@ -12,6 +12,7 @@
                                         <th>Image</th>
                                         <th>Role</th>
                                         <th>Edit</th>
+                                        <th>Change Role</th>
                                         <th>Delete</th>
 <!--                                        <th>Content</th>-->
                                     </tr>
@@ -19,7 +20,8 @@
                                 <tbody>
 <?php 
     ///// users table data 
-    getAllUsers();      
+    getAllUsers();
+    changeUserRole();
     deleteUser();
 ?>                                               
                                 </tbody>

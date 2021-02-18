@@ -244,6 +244,7 @@
                 <td><?php echo "<img class='img-responsive' width='90' src='../images/{$user_image}'>";?></td>        
                 <td><?php echo $user_role; ?></td>
                 <td><a href="users.php?source=edit_user&edit=<?php echo "{$user_id}"; ?>">Edit</a></td>
+                <td><a href="users.php?change=<?php echo "{$user_id}"; ?>">Switch</a></td>
                 <td><a href="users.php?delete=<?php echo "{$user_id}"; ?>">Delete</a></td>
                 
 
@@ -261,4 +262,23 @@
             header("Location: users.php");
         }  
     }
+    
+    function changeUserRole() {
+        global $connection;
+        if(isset($_GET['change'])) {
+            $get_user_id = $_GET['change'];
+            $query = "SELECT user_role FROM users WHERE user_id = {$get_user_id}";
+            $get_user_role = mysqli_query($connection, $query);
+            $user_role = mysqli_fetch_assoc($get_user_role)['user_role'];
+            if($user_role === 'admin') {
+                $new_role = 'subscriber';
+            } else {
+                $new_role = 'admin';
+            }
+            $query = "UPDATE users SET user_role='{$new_role}' WHERE user_id = {$get_user_id}";
+            $update_role = mysqli_query($connection, $query);
+            header("Location: users.php");
+        }  
+    }
+    
 ?>

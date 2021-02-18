@@ -50,7 +50,7 @@
     <div class="form-group">
         <label for="user_image">Image</label>
         <input class="form-control-file" type="file" name="user_image">
-    </div>  
+    </div> 
     <div class="form-group">
         <input type="submit" class="btn btn-primary" name="create_user" value="Add User">
     </div> 
