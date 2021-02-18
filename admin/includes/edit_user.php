@@ -21,7 +21,7 @@
     </div>
     <div class="form-group">
         <label for="user_password">Password</label>
-        <input type="text" class="form-control" name="user_password" value="<?php echo $get_user_password ?>">
+        <input type="password" class="form-control" name="user_password" value="<?php echo $get_user_password ?>">
     </div>
     <div class="form-group">
         <label for="user_firstname">First Name</label>

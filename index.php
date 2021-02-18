@@ -8,14 +8,14 @@
         <div class="row">
 
             <!-- Blog Entries Column -->
-            <div class="col-md-12 text-center">
+            <div class="col-md-8">
                
-                <h1 class="page-header">
+                <h1 class="page-header text-center">
                     Anthony D'Souza's
                     <small>DevJourney</small>
                 </h1>
                 
-                <!-- First Blog Post -->
+                <!-- Blog Post Entries-->
                 <?php
                     $query = "SELECT * FROM posts";
                     $posts = mysqli_query($connection, $query);
@@ -58,8 +58,7 @@
 
 <!--             Blog Sidebar Widgets Column -->
             
-<!--            <?php include "includes/sidebar.php"; ?>
--->
+           <?php include "includes/sidebar.php"; ?>
 
         </div>
         <!-- /.row -->
