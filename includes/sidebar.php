@@ -3,12 +3,12 @@
                 <!-- Login -->
                 <div class="well">
                     <h4>Login</h4>
-                    <form action="login.php" method="post">
+                    <form action="includes/login.php" method="post">
                         <div class="form-group">
                             <input name="username" type="text" placeholder="Username" class="form-control">
                         </div>
                         <div class="input-group">
-                            <input name="user_password" type="password" placeholder="Password" class="form-control">
+                            <input name="password" type="password" placeholder="Password" class="form-control">
                             <span class="input-group-btn">
                                <button class="btn btn-primary" name="login" type="submit">
                                 Login
