@@ -1,4 +1,5 @@
 <?php include "db.php"; ?>
+<?php session_start(); ?>
 <?php include "functions.php"; ?>
 
 <?php
@@ -24,6 +25,11 @@ while($row = mysqli_fetch_assoc($user_query)){
 }
 
 if($username == $db_username && $password == $db_user_password) {
+    $_SESSION['username'] = $db_username;
+    $_SESSION['firstname'] = $db_user_firstname;
+    $_SESSION['lastname'] = $db_user_lastname;
+    $_SESSION['user_role'] = $db_user_role;
+    
     header("location: ../admin");
 } else {
     header("location: ../index.php");
