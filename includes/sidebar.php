@@ -18,8 +18,6 @@
                     </form>
                     <!-- /.input-group -->
                 </div>
-                
-
                 <!-- Blog Categories Well -->
 <!--
                 <div class="well">
@@ -49,5 +47,4 @@
 
                 <!-- Side Widget Well -->
                <?php //include "widget.php"; ?>
-
 </div>
