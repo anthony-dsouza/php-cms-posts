@@ -30,7 +30,13 @@
                         <i class="fa fa-file-text fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                  <div class='huge'>12</div>
+<?php
+$query = "SELECT * FROM posts";
+$all_posts = mysqli_query($connection, $query);
+$num_posts = mysqli_num_rows($all_posts);
+echo "<div class='huge'>{$num_posts}</div>";
+                        
+?>
                         <div>Posts</div>
                     </div>
                 </div>
@@ -52,7 +58,13 @@
                         <i class="fa fa-comments fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                     <div class='huge'>23</div>
+<?php
+$query = "SELECT * FROM comments";
+$all_comments = mysqli_query($connection, $query);
+$num_comments = mysqli_num_rows($all_comments);
+echo "<div class='huge'>{$num_comments}</div>";
+                        
+?>
                       <div>Comments</div>
                     </div>
                 </div>
@@ -74,7 +86,13 @@
                         <i class="fa fa-user fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                    <div class='huge'>23</div>
+<?php
+$query = "SELECT * FROM users";
+$all_users = mysqli_query($connection, $query);
+$num_users = mysqli_num_rows($all_users);
+echo "<div class='huge'>{$num_users}</div>";
+                        
+?>
                         <div> Users</div>
                     </div>
                 </div>
@@ -96,7 +114,13 @@
                         <i class="fa fa-list fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class='huge'>13</div>
+<?php
+$query = "SELECT * FROM categories";
+$all_categories = mysqli_query($connection, $query);
+$num_categories = mysqli_num_rows($all_categories);
+echo "<div class='huge'>{$num_categories}</div>";
+                        
+?>
                          <div>Categories</div>
                     </div>
                 </div>
