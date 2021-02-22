@@ -103,7 +103,7 @@ if(isset($_SESSION['username'])) {
             move_uploaded_file($user_image_temp, "../images/$user_image");
         }
         $user_role = $_POST['user_role'];
-        
+        //update database
         $query = "UPDATE users SET ";
         $query .= "username = '{$username}', ";
         $query .= "user_password = '{$user_password}', ";
@@ -115,6 +115,12 @@ if(isset($_SESSION['username'])) {
         $query .= "WHERE user_id = {$get_user_id}";
         $update_profile = mysqli_query($connection, $query);
         confirmQuery($update_profile);
+        
+        //update session
+        $_SESSION['username'] = $username;
+        $_SESSION['firstname'] = $user_firstname;
+        $_SESSION['lastname'] = $user_lastname;
+        $_SESSION['user_role'] = $user_role;
         header("Location: profile.php");
     }
 ?>                
