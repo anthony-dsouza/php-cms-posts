@@ -10,14 +10,20 @@
             <div class="container-fluid">
 
                 <!-- Page Heading -->
+<!--
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
                             Welcome
-                            <small><?php echo ucfirst($_SESSION['firstname']); ?></small>
+                            <small>
+-->
+                            <?php /// echo ucfirst($_SESSION['firstname']); ?>
+<!--
+                            </small>
                         </h1>
                     </div>
                 </div>
+-->
                 <!-- /.row -->
        
                 
@@ -136,6 +142,50 @@ echo "<div class='huge'>{$num_categories}</div>";
     </div>
 </div>
                 <!-- /.row -->
+<div class="row">
+<?php   
+$query = "SELECT * FROM posts WHERE post_status='draft'";
+$draft_posts = mysqli_query($connection, $query);
+$num_draft_posts = mysqli_num_rows($draft_posts);
+
+$query = "SELECT * FROM comments WHERE comment_status='unapproved'";
+$draft_comments = mysqli_query($connection, $query);
+$num_draft_comments = mysqli_num_rows($draft_comments);
+?>  
+   
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['bar']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['', 'Count', 'Non-Active'],
+              ['Posts', <?php echo $num_posts; ?>, <?php echo $num_draft_posts; ?>],
+              ['Comments', <?php echo $num_comments; ?>, <?php echo $num_draft_comments; ?>],
+              ['Users', <?php echo $num_users; ?>, 0],
+              ['Categories', <?php echo $num_categories; ?>, 0]
+            ]);
+
+            var options = {
+              chart: {
+                title: '',
+                subtitle: '',
+              }
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+    </script>  
+    <div id="columnchart_material" style="width: 'auto'; height: 400px;"></div>
+
+
+
+
+</div>    
+                
+                
             </div>
             <!-- /.container-fluid -->
 
