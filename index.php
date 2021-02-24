@@ -31,9 +31,7 @@
                             $post_image = $row['post_image'];
                             $post_content = substr($row['post_content'],0,100); 
                             $post_status = $row['post_status'];
-                            if($post_status !== 'published') {
-                                
-                            } else {
+                            if($post_status == 'published') {
                 ?>             
                             <h2>
                             <a href="post.php?p_id=<?php echo $post_id ?>"><?php echo $post_title ?></a>
