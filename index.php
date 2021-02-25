@@ -41,10 +41,12 @@
                             </p>
                             <p><span class="glyphicon glyphicon-time"></span> Posted on <?php echo "{$date_month} {$date_day}, {$date_year} at {$date_time}" ?></p>
                             <hr>
+                            <a href="post.php?p_id=<?php echo $post_id ?>">
                             <img class="img-responsive img-thumbnail" src='images/<?php echo $post_image ?>' alt="" width="900" height="300">
+                            </a>
                             <hr>
                             <p><?php echo $post_content ?></p>
-                            <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                            <a class="btn btn-primary" href="post.php?p_id=<?php echo $post_id ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                             <hr>
                 <?php   
