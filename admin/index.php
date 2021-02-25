@@ -143,10 +143,18 @@ echo "<div class='huge'>{$num_categories}</div>";
 </div>
                 <!-- /.row -->
 <div class="row">
-<?php   
+<?php
+$query = "SELECT * FROM posts WHERE post_status='published'";
+$published_posts = mysqli_query($connection, $query);
+$num_published_posts = mysqli_num_rows($published_posts);
+
 $query = "SELECT * FROM posts WHERE post_status='draft'";
 $draft_posts = mysqli_query($connection, $query);
 $num_draft_posts = mysqli_num_rows($draft_posts);
+    
+$query = "SELECT * FROM comments WHERE comment_status='approved'";
+$approved_comments = mysqli_query($connection, $query);
+$num_approved_comments = mysqli_num_rows($approved_comments);
 
 $query = "SELECT * FROM comments WHERE comment_status='unapproved'";
 $draft_comments = mysqli_query($connection, $query);
@@ -155,6 +163,10 @@ $num_draft_comments = mysqli_num_rows($draft_comments);
 $query = "SELECT * FROM users WHERE user_role='subscriber'";
 $all_subscribers = mysqli_query($connection, $query);
 $num_subscribers = mysqli_num_rows($all_subscribers);
+    
+$query = "SELECT * FROM users WHERE user_role='admin'";
+$all_admin = mysqli_query($connection, $query);
+$num_admin = mysqli_num_rows($all_admin);
 ?>  
    
     <script type="text/javascript">
@@ -165,10 +177,13 @@ $num_subscribers = mysqli_num_rows($all_subscribers);
             var data = google.visualization.arrayToDataTable([
               ['', ''],
               ['Posts', <?php echo $num_posts; ?>],
+              ['Published Posts', <?php echo $num_published_posts; ?>],
               ['Draft Posts', <?php echo $num_draft_posts; ?>],
               ['Comments', <?php echo $num_comments; ?>],
+              ['Approved Comments', <?php echo $num_approved_comments; ?>],
               ['Draft Comments', <?php echo $num_draft_comments; ?>],
               ['Users', <?php echo $num_users; ?>],
+              ['Admin', <?php echo $num_admin; ?>],
               ['Subscribers', <?php echo $num_subscribers; ?>],
               ['Categories', <?php echo $num_categories; ?>]
             ]);

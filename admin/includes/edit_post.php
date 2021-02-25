@@ -13,7 +13,7 @@
                 $get_post_image = $row['post_image'];
                 $get_post_content = $row['post_content'];
                 $get_post_tags = $row['post_tags'];
-                $get_post_status = ucfirst($row['post_status']);
+                $get_post_status = $row['post_status'];
 ?>
 <form action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
@@ -50,9 +50,15 @@
         <label for="post_status">Post Status</label>
         <div class="form-group">
         <select name="post_status" id="post_status">
-            <?php echo "<option value='{$get_post_status}' selected='selected'>{$get_post_status}</option>"; ?>
-            <option value="published">Published</option>
-            <option value="draft">Draft</option>
+            <option value='<?php echo $get_post_status; ?>' selected='selected'><?php echo ucfirst($get_post_status); ?></option>
+            <?php
+            if($get_post_status == 'draft'){
+                echo "<option value='published'>Published</option>";
+            } else {
+             echo "<option value='draft'>Draft</option>";
+            }
+                
+            ?>
         </select>
         </div>
     </div>

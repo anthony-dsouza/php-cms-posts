@@ -48,8 +48,8 @@
     </div>
     <div class="form-group">
         <label for="post_status">Post Status</label>
-        <div class="form-group">
-        <select name="post_status" id="">
+        <div class="col">
+        <select class="form-control" name="post_status" id="">
             <option selected disabled value=''>Select Status</option>
             <option value="published">Published</option>
             <option value="draft">Draft</option>
@@ -58,8 +58,8 @@
     </div>
     <div class="form-group">
         <label for="post_image">Image</label>
-        <input type="file" name="post_image">
-    </div>  
+        <input class="form-control-file" type="file" name="post_image">
+    </div> 
     <div class="form-group">
         <label for="post_tags">Post Tags</label>
         <input type="text" class="form-control" name="post_tags">
