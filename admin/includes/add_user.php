@@ -15,9 +15,10 @@
         $query .= "VALUES('{$username}', '{$user_password}', '{$user_firstname}', '{$user_lastname}', '{$user_email}', '{$user_image}', '{$user_role}' ) ";
         $insert_user = mysqli_query($connection, $query);
         confirmQuery($insert_user);
-        
+        /// create a more pleasing notification
+        ?> <div class="alert"> <?php
         echo "User Created:" . " " . "<a href='users.php'>View Users</a>";
-        
+        ?> </div><?php
     }
 ?>
 <form action="" method="post" enctype="multipart/form-data">
