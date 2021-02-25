@@ -17,7 +17,7 @@
         confirmQuery($insert_user);
         /// create a more pleasing notification
         ?> <div class="alert"> <?php
-        echo "User Created:" . " " . "<a href='users.php'>View Users</a>";
+        echo "<p class='bg-success'>User Created:" . " " . "<a href='users.php'>View Users</a> </p>";
         ?> </div><?php
     }
 ?>

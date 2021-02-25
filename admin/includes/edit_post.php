@@ -14,6 +14,48 @@
                 $get_post_content = $row['post_content'];
                 $get_post_tags = $row['post_tags'];
                 $get_post_status = $row['post_status'];
+            }
+    }
+?>
+<?php
+    if(isset($_POST['update_post'])){
+        $post_title = $_POST['post_title'];
+        $post_cat_id = $_POST['post_cat_id'];
+        $post_author= $_POST['post_author'];
+        $post_date= $_POST['post_date'];
+        $post_status = $_POST['post_status'];
+        if(!$_FILES['post_image']['tmp_name']) {
+            $post_image = $get_post_image;
+        } else {
+            $post_image = $_FILES['post_image']['name'];
+            $post_image_temp = $_FILES['post_image']['tmp_name'];
+            move_uploaded_file($post_image_temp, "../images/$post_image");
+        }
+        $post_tags = $_POST['post_tags'];
+        $post_content = $_POST['post_content'];
+        $post_date = $_POST['post_date'];
+        
+        $query = "UPDATE posts SET ";
+        $query .= "post_cat_id = '{$post_cat_id}', ";
+        $query .= "post_title = '{$post_title}', ";
+        $query .= "post_author = '{$post_author}', ";
+        $query .= "post_date = '{$post_date}', ";
+        $query .= "post_image = '{$post_image}', ";
+        $query .= "post_content = '{$post_content}', ";
+        $query .= "post_tags = '{$post_tags}', ";
+        $query .= "post_status = '{$post_status}' ";
+        $query .= "WHERE post_id = {$get_post_id}";
+        $update_post = mysqli_query($connection, $query);
+        confirmQuery($update_post);
+        echo "<div class='bg-success'>";
+        echo "<div class=''>";
+        echo "<p>Post Updated</p>";
+        echo "</div>";
+        echo "<div class=''>";
+        echo "<a href='./posts.php'>View All Posts</a> or <a href='../post.php?p_id={$get_post_id}'>View Post</a></p>";
+        echo "</div>";
+        echo "</div>";
+    }
 ?>
 <form action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
@@ -77,49 +119,11 @@
     </div>
     <div class="form-group">
         <label for="post_content">Post Content</label>
-        <textarea class="form-control" name="post_content" id="" cols="30" rows="10"><?php echo $get_post_content; ?></textarea>
+        <textarea class="form-control" name="post_content" id="body" cols="30" rows="10"><?php echo $get_post_content; ?></textarea>
     </div>
     <div class="form-group">
         <input type="submit" class="btn btn-primary" name="update_post" value="Update">
     </div> 
 </form>
-            
-<?php
-          }
-    }
-?> 
 
 
-<?php
-    if(isset($_POST['update_post'])){
-        $post_title = $_POST['post_title'];
-        $post_cat_id = $_POST['post_cat_id'];
-        $post_author= $_POST['post_author'];
-        $post_date= $_POST['post_date'];
-        $post_status = $_POST['post_status'];
-        if(!$_FILES['post_image']['tmp_name']) {
-            $post_image = $get_post_image;
-        } else {
-            $post_image = $_FILES['post_image']['name'];
-            $post_image_temp = $_FILES['post_image']['tmp_name'];
-            move_uploaded_file($post_image_temp, "../images/$post_image");
-        }
-        $post_tags = $_POST['post_tags'];
-        $post_content = $_POST['post_content'];
-        $post_date = $_POST['post_date'];
-        
-        $query = "UPDATE posts SET ";
-        $query .= "post_cat_id = '{$post_cat_id}', ";
-        $query .= "post_title = '{$post_title}', ";
-        $query .= "post_author = '{$post_author}', ";
-        $query .= "post_date = '{$post_date}', ";
-        $query .= "post_image = '{$post_image}', ";
-        $query .= "post_content = '{$post_content}', ";
-        $query .= "post_tags = '{$post_tags}', ";
-        $query .= "post_status = '{$post_status}' ";
-        $query .= "WHERE post_id = {$get_post_id}";
-        $insert_post = mysqli_query($connection, $query);
-        confirmQuery($insert_post);
-        header("Location: posts.php?source=edit_post&edit={$get_post_id}");
-    }
-?>
