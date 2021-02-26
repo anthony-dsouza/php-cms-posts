@@ -121,6 +121,7 @@
             $post_status = $row['post_status'];
 ?>      
                <tr>
+                <td><input class="checkBoxes" type="checkbox" name='checkBoxArray[]' value="<?php echo $post_id; ?>"></td>
                 <td><?php echo $post_id; ?></td>
                 <td><?php echo $post_author; ?></td>
                 <td><?php echo $post_title; ?></td>
