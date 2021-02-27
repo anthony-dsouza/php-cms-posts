@@ -19,6 +19,15 @@
         $query .= "VALUES({$post_cat_id}, '{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_status}'  ) ";
         $insert_post = mysqli_query($connection, $query);
         confirmQuery($insert_post);
+        echo "<div class='bg-success'>";
+        echo "<div class=''>";
+        echo "<p>Post Created</p>";
+        echo "</div>";
+        echo "<div class=''>";
+        $get_post_id = mysqli_insert_id($connection);
+        echo "<a href='./posts.php'>View All Posts</a> or <a href='../post.php?p_id={$get_post_id}'>View Post</a></p>";
+        echo "</div>";
+        echo "</div>";
         
     }
 ?>
@@ -50,7 +59,7 @@
         <label for="post_status">Post Status</label>
         <div class="col">
         <select class="form-control" name="post_status" id="">
-            <option selected disabled value=''>Select Status</option>
+            <option selected value="draft">Select Status</option>
             <option value="published">Published</option>
             <option value="draft">Draft</option>
         </select>
