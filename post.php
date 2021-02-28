@@ -63,15 +63,21 @@
             $comment_content = $_POST['comment_content'];
             $comment_status = "approved";
         
-        $query = "INSERT INTO comments(comment_post_id, comment_author, comment_email, comment_date, comment_content, comment_status) ";
-        $query .= "VALUES({$comment_post_id}, '{$comment_author}', '{$comment_email}', now(), '{$comment_content}', '{$comment_status}'  ) ";
-        $insert_comment = mysqli_query($connection, $query);
-        if(!$insert_comment) {
-            die("query failed" . mysqli_error($connection));
+        if(!empty($comment_author) && !empty($comment_email) && !empty($comment_content) ){
+            $query = "INSERT INTO comments(comment_post_id, comment_author, comment_email, comment_date, comment_content, comment_status) ";
+            $query .= "VALUES({$comment_post_id}, '{$comment_author}', '{$comment_email}', now(), '{$comment_content}', '{$comment_status}'  ) ";
+            $insert_comment = mysqli_query($connection, $query);
+            if(!$insert_comment) {
+                die("query failed" . mysqli_error($connection));
+            }
+    //        $query = "UPDATE posts SET post_com_count = post_com_count + 1 WHERE post_id = {$comment_post_id}";
+    //        $update_post_com_count = mysqli_query($connection, $query);
+    //        confirmQuery($update_post_com_count);
+        } else {
+            echo "<script>alert('Fields cannot be empty')</script>";
         }
-//        $query = "UPDATE posts SET post_com_count = post_com_count + 1 WHERE post_id = {$comment_post_id}";
-//        $update_post_com_count = mysqli_query($connection, $query);
-//        confirmQuery($update_post_com_count);
+        
+        
     }
 ?>
                 <div class="well">
