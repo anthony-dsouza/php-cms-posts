@@ -167,15 +167,29 @@
                 $post_title_query = mysqli_query($connection, $query1);
                 confirmQuery($post_title_query);
                 $row1 = mysqli_fetch_assoc($post_title_query);
-            $post_title = $row1['post_title'];
-            $post_id = $row1['post_id'];
+            /// for when a post gets deleted
+                if($row1 == null){
+                    $post_title = "Post no longer exists";
+                    $post_id = 'na';
+                } else {
+                    $post_title = $row1['post_title'];
+                    $post_id = $row1['post_id'];
+                }
             $comment_date = $row['comment_date'];
             $comment_content = $row['comment_content'];
             $comment_status = $row['comment_status'];
 ?>      
                <tr>
                 <td><?php echo $comment_id; ?></td>
-                <td><?php echo "<a href='../post.php?p_id={$post_id}'>{$post_title}</a>"; ?></td>
+                <td><?php 
+            ////// when posts are deleted
+            if($post_id == 'na'){
+                echo $post_title;  
+            } else {
+                echo "<a href='../post.php?p_id={$post_id}'>{$post_title}</a>";
+            }       
+                    
+                    ?></td>
                 <td><?php echo $comment_author; ?></td>
                 <td><?php echo $comment_email; ?></td>
                 <td><?php echo $comment_status; ?></td>       

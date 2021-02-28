@@ -23,7 +23,7 @@
                         $posts = mysqli_query($connection, $query);
                         if(!$posts) {
                             die("query failed" . mysqli_error($connection));
-                        }
+                        } 
                     }
                     
                     while($row = mysqli_fetch_assoc($posts)){

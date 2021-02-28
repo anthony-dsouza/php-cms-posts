@@ -7,11 +7,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">Admin</a>
+                <a class="navbar-brand" href="../index.php">Home</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-                <li><a href="../index.php">Home</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php echo ucfirst($_SESSION['firstname']) . " " . ucfirst($_SESSION['lastname']); ?><b class="caret"></b></a>
                     <ul class="dropdown-menu">
