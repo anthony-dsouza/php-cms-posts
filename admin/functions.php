@@ -124,7 +124,7 @@
                 <td><input class="checkBoxes" type="checkbox" name='checkBoxArray[]' value="<?php echo $post_id; ?>"></td>
                 <td><?php echo $post_id; ?></td>
                 <td><?php echo $post_author; ?></td>
-                <td><?php echo $post_title; ?></td>
+                <td><a href="../post.php?p_id=<?php echo $post_id;?>"><?php echo $post_title; ?></a></td>
                 <td><?php echo $cat_title; ?></td>
                 <td><?php echo $post_status; ?></td>
                 <td><?php echo "<img class='img-responsive' width='90' src='../images/{$post_image}'>";?></td>        
